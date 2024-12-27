@@ -266,7 +266,7 @@ def recommend(uid):
 if __name__ == "__main__":
      # Bind a port to satisfy Render's requirements
     port = int(os.environ.get("PORT", 8080))  # Render sets PORT via environment
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_TREAM)
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(("0.0.0.0", port))
     print(f"Port {port} bound to keep the service alive.")
 
