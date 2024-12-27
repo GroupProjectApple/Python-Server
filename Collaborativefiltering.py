@@ -261,19 +261,20 @@ def recommend(uid):
         {"$set": { "recommendation": final_recommendations } })
 
     print(f"Final Recommendations for User {user_id}:")
+# Function to run a minimal HTTP server
+def start_http_server():
+    port = int(os.environ.get("PORT", 8080))  # Use Render's provided PORT or default to 8080
+    handler = http.server.SimpleHTTPRequestHandler
+
+    with socketserver.TCPServer(("", port), handler) as httpd:
+        print(f"HTTP server is running on port {port}.")
+        httpd.serve_forever()
     
 
 if __name__ == "__main__":
    
-    port = int(os.environ.get("PORT", 8080))  # Render sets PORT via environment
-    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    server_socket.bind(("0.0.0.0", port))
-    print(f"Port {port} bound to keep the service alive.")
-    server_socket.listen(1)  # Listen for one connection at a time
-    print(f"Server running on port {port}")
-    start_consuming()
-     # Bind a port to satisfy Render's requirements
+    threading.Thread(target=start_consuming).start()
 
-    # Keep the script running indefinitely
- 
+    # Start the HTTP server to satisfy Render's requirements
+    start_http_server()
     
