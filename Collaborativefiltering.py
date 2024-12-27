@@ -10,6 +10,7 @@ import json
 import os
 import socket
 import time
+import http.server
 
 # Connect to RabbitMQ
 def connect_to_rabbitmq():
