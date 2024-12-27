@@ -264,12 +264,15 @@ def recommend(uid):
     
 
 if __name__ == "__main__":
-    start_consuming()
-     # Bind a port to satisfy Render's requirements
+   
     port = int(os.environ.get("PORT", 8080))  # Render sets PORT via environment
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server_socket.bind(("0.0.0.0", port))
     print(f"Port {port} bound to keep the service alive.")
+    server_socket.listen(1)  # Listen for one connection at a time
+    print(f"Server running on port {port}")
+    start_consuming()
+     # Bind a port to satisfy Render's requirements
 
     # Keep the script running indefinitely
  
