@@ -1,4 +1,4 @@
-python==3.10.10
+python>=3.9,<3.11
 absl-py==2.1.0
 astunparse==1.6.3
 certifi==2024.8.30
