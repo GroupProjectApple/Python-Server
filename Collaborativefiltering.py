@@ -11,6 +11,8 @@ import os
 import socket
 import time
 import http.server
+import socketserver
+import threading
 
 # Connect to RabbitMQ
 def connect_to_rabbitmq():
