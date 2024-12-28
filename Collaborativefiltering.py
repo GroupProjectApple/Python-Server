@@ -30,7 +30,7 @@ def connect_to_rabbitmq():
 # Process the received message
 def process_message(ch, method, properties, body):
     message = json.loads(body)
-    print(f"Received message: {message}", flush=true)
+    print(f"Received message: {message}", flush=True)
     
     # Example AIML processing logic
     user_id = message.get("userId")
@@ -45,7 +45,7 @@ def process_message(ch, method, properties, body):
 def start_consuming():
     channel = connect_to_rabbitmq()
     channel.basic_consume(queue='user_actions', on_message_callback=process_message)
-    print("Waiting for messages in 'user_actions' queue...", flush=true)
+    print("Waiting for messages in 'user_actions' queue...", flush=True)
     channel.start_consuming()
     
 
@@ -251,7 +251,7 @@ def recommend(uid):
     """Main function to execute the recommendation pipeline."""
     recommendations = generate_all_user_recommendations()
     if not recommendations:
-        print("No recommendations generated.", flush=true)
+        print("No recommendations generated.", flush=True)
         return
 
     clustered_users = cluster_users(recommendations)
@@ -270,7 +270,7 @@ def start_http_server():
     handler = http.server.SimpleHTTPRequestHandler
 
     with socketserver.TCPServer(("", port), handler) as httpd:
-        print(f"HTTP server is running on port {port}.", flush=true)
+        print(f"HTTP server is running on port {port}.", flush=True)
         httpd.serve_forever()
     
 
